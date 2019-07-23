@@ -38,13 +38,3 @@ RUN npm i -g @sentry/cli
 # Firebase
 #
 RUN npm i -g firebase-tools
-
-CMD echo "user: $(whoami)" && \
-    echo "node: $(node --version)" && \
-    echo "npm: $(npm --version)" && \
-    echo "yarn: $(yarn --version)" && \
-    echo "firebase: $(firebase --version)" && \
-    echo "sentry: $(sentry-cli --version)" && \
-    echo "Google Cloud SDK" && \
-    gcloud --version && \
-    kubectl version --client
