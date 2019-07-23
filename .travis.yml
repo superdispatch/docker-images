@@ -3,7 +3,7 @@ language: bash
 services:
   - docker
 
-script: bash .travis-build.sh || || travis_terminate 1
+script: bash .travis-build.sh || travis_terminate 1
 
 deploy:
   provider: script
