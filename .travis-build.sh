@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
 # Node Pipeline
 docker pull superdispatch/node-pipeline || true
 docker build --pull --cache-from superdispatch/node-pipeline --tag superdispatch/node-pipeline node-pipeline
