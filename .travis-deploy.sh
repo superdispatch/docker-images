@@ -7,6 +7,8 @@ then
     export TAG=${TRAVIS_TAG//-node-pipeline/}
     docker tag superdispatch/node-pipeline superdispatch/node-pipeline:${TAG}
     docker tag superdispatch/node-pipeline superdispatch/node-pipeline:latest
+    docker push superdispatch/node-pipeline:${TAG}
+    docker push superdispatch/node-pipeline:latest
 else
     echo Invalid tag \"$TRAVIS_TAG\".
     exit 1
