@@ -1,0 +1,12 @@
+services:
+  - docker
+
+script:
+  - .travis-build.sh
+
+deploy:
+  provider: script
+  script: .travis-deploy.sh
+  on:
+    tags: true
+    branch: master

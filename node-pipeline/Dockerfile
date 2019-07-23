@@ -5,6 +5,7 @@ FROM google/cloud-sdk
 #
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update -y && apt-get install -y nodejs
+# Use current user for NPM
 RUN npm config -g set user $(whoami)
 
 #
