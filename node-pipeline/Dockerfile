@@ -11,7 +11,7 @@ RUN npm config -g set user $(whoami)
 #
 # Yarn
 #
-RUN npm i -g yarn
+RUN npm i -g yarn@^1.17.0
 
 #
 # Cypress
@@ -24,7 +24,7 @@ RUN apt-get install -y \
     libxss1 \
     libasound2 \
     xvfb
-RUN npm i -g cypress
+RUN npm i -g cypress@^3.4.0
 
 # Skip binary download for later cypress installs.
 ENV CYPRESS_INSTALL_BINARY=0
@@ -32,9 +32,9 @@ ENV CYPRESS_INSTALL_BINARY=0
 #
 # Sentry
 #
-RUN npm i -g @sentry/cli
+RUN npm i -g @sentry/cli@^1.47.0
 
 #
 # Firebase
 #
-RUN npm i -g firebase-tools
+RUN npm i -g firebase-tools@^7.1.0
