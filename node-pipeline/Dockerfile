@@ -25,7 +25,7 @@ RUN apt-get install -y \
     libasound2 \
     xvfb
 RUN npm i -g cypress@^3.4.0
-
+RUN cypress verify
 # Skip binary download for later cypress installs.
 ENV CYPRESS_INSTALL_BINARY=0
 
