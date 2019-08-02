@@ -9,6 +9,7 @@ then
     docker tag superdispatch/node-pipeline superdispatch/node-pipeline:latest
     docker push superdispatch/node-pipeline:${TAG}
     docker push superdispatch/node-pipeline:latest
+    curl -X POST https://hooks.microbadger.com/images/superdispatch/node-pipeline/${MICROBADGER_NODE_ID} > /dev/null
 else
     echo Invalid tag \"$TRAVIS_TAG\".
     exit 1
