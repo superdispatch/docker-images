@@ -5,8 +5,8 @@
 
 ### `superdispatch/node-pipeline`
 
-[![Image Version](https://images.microbadger.com/badges/version/superdispatch/node-pipeline.svg)](https://microbadger.com/images/superdispatch/node-pipeline "Image Version")
-[![Image Size](https://images.microbadger.com/badges/image/superdispatch/node-pipeline.svg)](https://microbadger.com/images/superdispatch/node-pipeline "Image Size")
+[![Image Version](https://images.microbadger.com/badges/version/superdispatch/node-pipeline.svg)](https://hub.docker.com/r/superdispatch/node-pipeline "Image Version")
+[![Image Size](https://images.microbadger.com/badges/image/superdispatch/node-pipeline.svg)](https://hub.docker.com/r/superdispatch/node-pipeline "Image Size")
 
 Image to `build`, `test` and `deploy` node projects.
 
