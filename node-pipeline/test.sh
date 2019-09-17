@@ -5,9 +5,5 @@ echo "node: $(node --version)"
 echo "npm: $(npm --version)"
 echo "yarn: $(yarn --version)"
 echo "firebase: $(firebase --version)"
-echo "sentry: $(sentry-cli --version)"
 echo "Cypress"
 cypress version
-echo "Google Cloud SDK"
-gcloud --version
-kubectl version --client
