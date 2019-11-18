@@ -16,6 +16,7 @@ jobs:
         type: string
         default: ''
     steps:
+      - checkout
       - run:
           name: Try to pull exist image
           command: docker pull superdispatch/<< parameters.image >>:latest || true
