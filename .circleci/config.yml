@@ -56,6 +56,7 @@ workflows:
               ignore: .*
 
       - build:
+          context: docker
           name: deploy-node-pipeline
           image: node-pipeline
           tag: ${CIRCLE_TAG//-node-pipeline/}
