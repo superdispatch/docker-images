@@ -1,0 +1,65 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: superdispatch/node-pipeline:10.1.0
+    working_directory: ~/repo
+
+jobs:
+  build:
+    machine: true
+    parameters:
+      image:
+        type: string
+      tag:
+        type: string
+        default: ''
+    steps:
+      - run:
+          name: Try to pull exist image
+          command: docker pull superdispatch/<< parameters.image >>:latest || true
+      - run:
+          name: Build image
+          command: docker build --pull --cache-from superdispatch/<< parameters.image >>:latest --tag superdispatch/<< parameters.image >> << parameters.image >>
+      - run:
+          name: Test image
+          command: docker run --rm -v $(pwd)/<< parameters.image >>/test.sh:/test.sh superdispatch/<< parameters.image >> bash test.sh
+      - when:
+          condition: << parameters.tag >>
+          steps:
+            - run:
+                name: Login to DockerHub
+                command: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            - run:
+                name: Push image with version tag
+                command: |
+                  docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:<< parameters.tag >>
+                  docker push superdispatch/<< parameters.image >>:<< parameters.tag >>
+            - run:
+                name: Push image with image tag
+                command: docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:latest
+            - run:
+                name: Update badges
+                command: curl -X POST https://hooks.microbadger.com/images/superdispatch/node-pipeline/${MICROBADGER_NODE_ID} > /dev/null
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build:
+          name: build-node-pipeline
+          image: node-pipeline
+          filters:
+            tags:
+              ignore: .*
+
+      - build:
+          name: build-node-pipeline
+          image: node-pipeline
+          filters:
+            branches:
+              ignore: .*
+            tags:
+              only: /^[0-9]+.[0-9]+.[0-9]+-node-pipeline$/
+
