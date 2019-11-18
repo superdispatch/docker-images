@@ -53,7 +53,7 @@ workflows:
           image: node-pipeline
           filters:
             tags:
-              ignore: .*
+              ignore: /.*/
 
       - build:
           context: docker
@@ -62,7 +62,7 @@ workflows:
           tag: ${CIRCLE_TAG//-node-pipeline/}
           filters:
             branches:
-              ignore: .*
+              ignore: /.*/
             tags:
               only: /^[0-9]+.[0-9]+.[0-9]+-node-pipeline$/
 
