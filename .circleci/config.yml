@@ -55,8 +55,9 @@ workflows:
               ignore: .*
 
       - build:
-          name: build-node-pipeline
+          name: deploy-node-pipeline
           image: node-pipeline
+          tag: ${CIRCLE_TAG//-node-pipeline/}
           filters:
             branches:
               ignore: .*
