@@ -3,10 +3,9 @@ FROM circleci/node:12.12.0-stretch-browsers
 ENV CYPRESS_VERSION 3.6.1
 ENV FIREBASE_VERSION 7.7.0
 
+# use current user as npm user and allow installing when the main user is root
 RUN echo "whoami: $(whoami)" && \
-  # use current user as npm user
   sudo npm config -g set user $(whoami) && \
-  # allow installing when the main user is root
   sudo npm config -g set unsafe-perm true
 
 #
