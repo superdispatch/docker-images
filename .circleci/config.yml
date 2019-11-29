@@ -2,8 +2,7 @@ version: 2.1
 
 jobs:
   main:
-    docker:
-      - image: docker:stable-git
+    machine: true
     parameters:
       image:
         type: string
