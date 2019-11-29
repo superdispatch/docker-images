@@ -1,43 +1,35 @@
-FROM circleci/node:12.12.0-stretch-browsers
+FROM node:12.13.1
 
 ENV CYPRESS_VERSION 3.6.1
 ENV FIREBASE_VERSION 7.7.0
 
-# use current user as npm user and allow installing when the main user is root
-RUN echo "whoami: $(whoami)" && \
-  sudo npm config -g set user $(whoami) && \
-  sudo npm config -g set unsafe-perm true
+RUN echo "user: $(whoami)" && \
+    echo "node: $(node --version)" && \
+    echo "npm: $(npm --version)" && \
+    echo "yarn: $(yarn --version)" && \
+    npm config -g set user $(whoami)
 
 #
 # Firebase
 #
-RUN sudo npm i -g --no-optional firebase-tools@$FIREBASE_VERSION && \
-  echo "firebase: $(firebase --version)"
+RUN npm i -g --no-optional firebase-tools@$FIREBASE_VERSION && \
+    echo "firebase: $(firebase --version)"
 
 #
 # Cypress
 #
 # Install required depdendencies.
-RUN sudo apt-get update && \
-  sudo apt-get install --no-install-recommends -y \
-  libgtk2.0-0 \
-  libgtk-3-0 \
-  libnotify-dev \
-  libgconf-2-4 \
-  libnss3 \
-  libxss1 \
-  libasound2 \
-  libxtst6 \
-  xauth \
-  xvfb \
-  fonts-roboto
-
-# Install Cypress as global dependency.
-RUN sudo npm i -g --no-optional cypress@$CYPRESS_VERSION && \
-  sudo chown -R $(whoami):$(whoami) /root/.cache && \
-  sudo mv /root/.cache ~/.cache && \
-  cypress version && \
-  DISPLAY='' cypress verify
+RUN apt-get update -y && apt-get install -y \
+    libgtk2.0-0 \
+    libnotify-dev \
+    libgconf-2-4 \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    xvfb && \
+    npm i -g --no-optional cypress@$CYPRESS_VERSION && \
+    cypress version && \
+    cypress verify
 
 # Skip binary download for later cypress installs.
 ENV CYPRESS_INSTALL_BINARY 0
