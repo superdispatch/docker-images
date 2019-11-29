@@ -7,7 +7,7 @@ executors:
     working_directory: ~/repo
 
 jobs:
-  build:
+  main:
     machine: true
     parameters:
       image:
@@ -45,14 +45,14 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build:
+      - main:
           name: build-node-pipeline
           image: node-pipeline
           filters:
             tags:
               ignore: /.*/
 
-      - build:
+      - main:
           context: docker
           name: deploy-node-pipeline
           image: node-pipeline
