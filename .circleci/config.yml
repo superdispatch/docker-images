@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   main:
     docker:
-      - image: circleci/buildpack-deps:latest-dind
+      - image: docker:stable-git
     parameters:
       image:
         type: string
