@@ -1,14 +1,9 @@
 version: 2.1
 
-executors:
-  node:
-    docker:
-      - image: superdispatch/node-pipeline:10.1.0
-    working_directory: ~/repo
-
 jobs:
   main:
-    machine: true
+    docker:
+      - image: circleci/buildpack-deps:latest-dind
     parameters:
       image:
         type: string
