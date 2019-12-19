@@ -12,28 +12,21 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Try to pull exist image
-          command: docker pull superdispatch/<< parameters.image >>:latest || true
-      - run:
-          name: Build image
-          command: docker build --pull --cache-from superdispatch/<< parameters.image >>:latest --tag superdispatch/<< parameters.image >> << parameters.image >>
+          name: Build
+          command: |
+            docker pull superdispatch/<< parameters.image >>:latest || true
+            docker build --pull --cache-from superdispatch/<< parameters.image >>:latest --tag superdispatch/<< parameters.image >> << parameters.image >>
       - when:
           condition: << parameters.tag >>
           steps:
             - run:
-                name: Login to DockerHub
-                command: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            - run:
-                name: Push image with version tag
+                name: Deploy
                 command: |
+                  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                   docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:<< parameters.tag >>
                   docker push superdispatch/<< parameters.image >>:<< parameters.tag >>
-            - run:
-                name: Push image with image tag
-                command: docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:latest
-            - run:
-                name: Update badges
-                command: curl -X POST https://hooks.microbadger.com/images/superdispatch/node-pipeline/${MICROBADGER_NODE_ID} > /dev/null
+                  docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:latest
+                  curl -X POST https://hooks.microbadger.com/images/superdispatch/node-pipeline/${MICROBADGER_NODE_ID} > /dev/null
 
 workflows:
   version: 2
