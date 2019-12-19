@@ -14,8 +14,8 @@ jobs:
       - run:
           name: Build
           command: |
-            docker pull superdispatch/<< parameters.image >>:latest || true
-            docker build --pull --cache-from superdispatch/<< parameters.image >>:latest --tag superdispatch/<< parameters.image >> << parameters.image >>
+            docker pull --quiet superdispatch/<< parameters.image >>:latest || true
+            docker build --quiet --pull --cache-from superdispatch/<< parameters.image >>:latest --tag superdispatch/<< parameters.image >> << parameters.image >>
       - when:
           condition: << parameters.tag >>
           steps:
