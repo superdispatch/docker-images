@@ -1,4 +1,4 @@
-FROM node:12.14.0
+FROM node:12.14.1
 
 RUN npm config -g set user $(whoami) && \
     echo "user: $(whoami)" && \
@@ -9,14 +9,14 @@ RUN npm config -g set user $(whoami) && \
 #
 # Firebase
 #
-ENV FIREBASE_VERSION 7.11.0
+ENV FIREBASE_VERSION 7.12.1
 RUN npm i -g --no-optional firebase-tools@$FIREBASE_VERSION && \
     echo "firebase: $(firebase --version)"
 
 #
 # Cypress
 #
-ENV CYPRESS_VERSION 3.8.0
+ENV CYPRESS_VERSION 3.8.2
 RUN apt-get update -y && apt-get install -y \
     libgtk2.0-0 \
     libnotify-dev \
