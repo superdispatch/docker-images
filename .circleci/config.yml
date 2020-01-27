@@ -24,8 +24,9 @@ jobs:
                 command: |
                   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                   docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:<< parameters.tag >>
-                  docker push superdispatch/<< parameters.image >>:<< parameters.tag >>
                   docker tag superdispatch/<< parameters.image >> superdispatch/<< parameters.image >>:latest
+                  docker push superdispatch/<< parameters.image >>:<< parameters.tag >>
+                  docker push superdispatch/<< parameters.image >>:latest
                   curl -X POST https://hooks.microbadger.com/images/superdispatch/node-pipeline/${MICROBADGER_NODE_ID} > /dev/null
 
 workflows:
