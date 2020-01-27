@@ -16,4 +16,4 @@ Image to `build`, `test` and `deploy` node projects.
 | `NPM`              | 6.13.4     |
 | `Yarn`             | 1.21.1     |
 | `firebase-tools`   | 7.12.1     |
-| `Cypress`          | 3.8.2      |
+| `Cypress`          | 3.8.3      |

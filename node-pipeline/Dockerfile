@@ -16,7 +16,7 @@ RUN npm i -g --no-optional firebase-tools@$FIREBASE_VERSION && \
 #
 # Cypress
 #
-ENV CYPRESS_VERSION 3.8.2
+ENV CYPRESS_VERSION 3.8.3
 RUN apt-get update -y && apt-get install -y \
     libgtk2.0-0 \
     libnotify-dev \
