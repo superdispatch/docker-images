@@ -12,8 +12,8 @@ Image to `build`, `test` and `deploy` node projects.
 
 | Tool               | Version    |
 | ------------------ | ---------- |
-| `Node`             | 12.14.1    |
-| `NPM`              | 6.13.4     |
-| `Yarn`             | 1.21.1     |
-| `firebase-tools`   | 7.12.1     |
-| `Cypress`          | 3.8.3      |
+| `Node`             | 13.6.0    |
+| `NPM`              | 6.13.7     |
+| `Yarn`             | 1.22.0     |
+| `firebase-tools`   | 7.13.1     |
+| `Cypress`          | 4.0.2      |
